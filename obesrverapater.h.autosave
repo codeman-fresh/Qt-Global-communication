@@ -1,0 +1,17 @@
+#ifndef OBESRVERAPATER_H
+#define OBESRVERAPATER_H
+
+#include <QObject>
+
+class obesrverApater : public QObject
+{
+    Q_OBJECT
+public:
+    explicit obesrverApater(QObject *parent = nullptr);
+
+signals:
+
+    void notify(); //如果想传参数 修改notify以及相关的notify  例如notify（QString,int）
+};
+
+#endif // OBESRVERAPATER_H

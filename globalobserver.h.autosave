@@ -1,0 +1,36 @@
+#ifndef GLOBALOBSERVER_H
+#define GLOBALOBSERVER_H
+
+#include <QObject>
+#include "obesrverapater.h"
+#pragma once
+
+//class obesrverApater;
+
+struct relationData
+{
+    QString type;
+    QObject *receiver;
+    obesrverApater *obesrverApater;
+};
+
+
+
+class GlobalObserver : public QObject
+{
+    Q_OBJECT
+public:
+    static GlobalObserver* GetInstance();
+    static GlobalObserver *m_pInstance;
+    void attach(const QString  type, QObject * receiver, const char * method);
+    void detach(const QString  type, const QObject* reciver);
+    void notify(const QString  type);//如果要传参数 这里要加上相应的参数类型
+private:
+    GlobalObserver();
+    ~GlobalObserver();
+private:
+    QList<relationData*> m_oRelationList;
+};
+
+
+#endif // GLOBALOBSERVER_H
